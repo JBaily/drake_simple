@@ -23,7 +23,12 @@ plan <- drake_plan(
    fish = rfishbase::species_list(Family = "Apogonidae"),
    field_wanted = c("Species", "Length", " "),
    fish_table_test = species(species_list = fish),
+   
    desired_table = fish_table_test[,c("Species", "Length")],
-   write.csv(desired_table,"results/length.csv", row.names = TRUE)
-                         
+   write.csv(desired_table,"results/length.csv", row.names = TRUE),
+   frequency_length = count(desired_table, "Length"),
+   
+   write.csv(frequency_length,"results/length_freq.csv", row.names = TRUE),
+   fish_graph = draw_graph(frequency_length, 
+                           file=file_out("results/data_plot.pdf"))
 )

@@ -1,3 +1,12 @@
+draw_graph <- function(table, file) {
+  pdf(file=file)
+  barplot(table$freq, names.arg=table$Length, 
+          xlab="Length (cm)", ylab="Frequency", legend.text="Last bar refers 
+          to NA--ignore it")
+  dev.off()
+  
+}
+
 plot_tree <- function(tree, file) {
 	pdf(file=file)
   plot(tree)
